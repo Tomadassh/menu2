@@ -1,0 +1,37 @@
+#!/bin/bash
+
+clear
+echo -e "\033[41;1;37mOpções experimentais, sem garantias de sucesso:\033[0m"
+
+echo -e "\033[1;36m1) Ver IPs conectados no servidor (os usuários que não são mostrados seus endereços IPs estão logados no próprio servidor)
+2) Bloquear IP específico (impedi-lo de se conectar ao servidor via ssh, também previne de um ataque Brut Force vindos de um determinado IP)
+3) Sair\033[0m"
+read -p "opção: " option
+
+
+if [ $option -eq 1 ]; then
+clear
+echo " "
+echo -e "\033[1;37m -------------------------------------------------------\033[0m"
+finger
+echo -e "\033[1;37m -------------------------------------------------------\033[0m"
+echo " "
+ exit
+ fi
+
+
+
+if [ $option -eq 2 ]; then
+read -p "Digite o IP a ser bloqueado: " blockip
+iptables -I INPUT -s $blockip -j DROP /etc/init.d/iptables save
+echo -e "\033[1;37mO IP \033[1:31m$blockip\003[0m foi bloqueado!\033[0m"
+ exit
+ fi
+
+
+
+if [ $option -eq 3 ]; then
+exit
+fi
+
+echo -e "\033[1;31mEssa opção não existe.\033[0m"

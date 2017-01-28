@@ -1,0 +1,69 @@
+#!/bin/bash
+
+clear
+echo -e "\033[41;1;37mAtenção!!! Apenas para usuários avançados!!:\033[0m"
+echo -e "\033[1;36m1) Reiniciar serviço SSH
+2) Reiniciar serviço de proxy
+3) Reiniciar servidor VPS
+4) Sair deste menu
+5) Sair deste menu
+6) Sair deste menu\033[0m"
+read -p "opção: " option
+
+ if [ $option -eq 1 ]; then
+ echo -e "\033[1;31mservice ssh restart - um momento...\033[0m"
+ service ssh restart
+ service sshd restart
+ echo -e "\033[1;31mPronto!\033[0m"
+ exit
+ fi
+
+ if [ $option -eq 2 ]; then
+ echo -e "\033[1;31mservice squid(3) restart - um momento...\033[0m"
+service squid restart 1> /dev/null 2> /dev/null
+service squid3 restart 1> /dev/null 2> /dev/null
+ echo -e "\033[1;31mPronto!\033[0m"
+ exit
+ fi
+
+ if [ $option -eq 3 ]; then
+clear
+ echo -e "\033[1;31mReiniciando a máquina em 5s...
+Você será desconectado! Espere 30s e conecte-se novamente.\033[0m"
+echo " "
+echo "5"
+sleep 1s
+echo "4"
+sleep 1s
+echo "3"
+sleep 1s
+echo "2"
+sleep 1s
+echo "1"
+sleep 1s
+echo "0"
+echo -e "\033[1;37mby by :) - MegaTúnel VPS\033[0m"
+reboot
+ exit
+ fi
+
+
+ if [ $option -eq 4 ]; then
+ echo -e "\033[1;37mUfa! :)\033[0m"
+ exit
+ fi
+
+if [ $option -eq 5 ]; then
+ echo -e "\033[1;37mUfa! :)\033[0m"
+ exit
+ fi
+
+if [ $option -eq 6 ]; then
+ echo -e "\033[1;37mUfa! :)\033[0m"
+ exit
+ fi
+
+
+
+
+echo -e "\033[1;31mEssa opçao não existe\033[0m"

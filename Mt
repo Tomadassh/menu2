@@ -1,0 +1,22 @@
+#!/bin/bash
+
+while true; do
+echo -e "\033[1;37m Para sair, tecle Ctrl + c \033[0m"
+echo -e "\033[1;37m -------------------------------------------------------\033[0m"
+echo -e " \033[47;30m   Usuário                :               Conexão/Limite   \033[0m"
+echo -e "\033[1;37m -------------------------------------------------------\033[0m"
+        for usur in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]`; do
+	usurnum=$(ps -u $usur |grep sshd |wc -l)
+
+  if cat /etc/tomada/limite/$usur > /dev/null 2> /dev/null
+then
+mtvps=$(cat /etc/tomada/limite/$usur)
+else
+mtvps="?"
+fi
+        echo -e "\033[1;33m    $(printf '%-42s%s' $usur $usurnum/$mtvps) \033[0m"
+        echo -e "\033[1;37m -------------------------------------------------------\033[0m"
+        done
+sleep 6s
+clear
+done

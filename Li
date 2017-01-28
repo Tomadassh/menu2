@@ -1,0 +1,16 @@
+#!/bin/bash
+clear
+read -p "Qual o nome do usuário a redefinir: " namer
+ if cat /etc/passwd |grep $namer: > /dev/null
+ then
+ echo " "
+ else
+ clear
+echo -e "\033[1;31mO usuário $namer não existe, tente novamente.\033[0m"
+ Li
+ fi
+	echo -e "\033[1;32mLimite de logins para $namer:\033[0;37m"; read -p " " liml
+  limit $namer $liml
+exit 0
+fi
+

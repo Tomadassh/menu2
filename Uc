@@ -1,0 +1,41 @@
+#!/bin/bash
+
+if [ $(id -u) -eq 0 ]
+then
+	echo -e "\033[1;32mNome do novo usuário:\033[0;37m"; read -p " " name
+
+if cat /etc/passwd |grep $name: |grep -vi [a-z]$name |grep -v [0-9]$name > /dev/null
+	then
+	echo -e "\033[1;31mUsuário \033[1;31m$name\033[0m já existe, crie outro usúario.\033[0m"
+Uc
+else
+	echo -e "\033[1;32mSenha para o usuário $name:\033[0;37m"; read -p " " pass
+
+	echo -e "\033[1;32mQuantos dias usuário $name deve durar:\033[0;37m"; read -p " " daysrnf
+
+	echo -e "\033[1;32mLimite de logins para $name :\033[0;37m"; read -p " " liml
+
+	echo -e "\033[0m"
+		valid=$(date '+%C%y-%m-%d' -d " +$daysrnf days")
+		datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
+		useradd -M -s /bin/false $name -e $valid
+		(echo $pass; echo $pass)|passwd $name 2>/dev/null
+    limit $name $liml
+    echo -e "\033[1;36mProcessando dados...\033[0m"
+    sleep 3s
+		echo -e "\033[1;36mUsuário: \033[0m$name"
+		echo -e "\033[1;36mSenha: \033[0m$pass"
+		echo -e "\033[1;36mExpira:\033[0m$datexp"
+    echo -e "\033[1;36mLimite:\033[0m$liml login(s)"
+	    echo "$pass" > /etc/tomada/senha/$name
+	fi
+else
+	if echo $(id) |grep sudo > /dev/null
+	then
+	echo -e "\033[1;37mSeu usuário está no grupo sudo\033[0m"
+	echo -e "\033[1;37mPara tornar-se root execute \033[1;31msudo su\033[0m"
+	echo -e "\033[1;37mOu execute o Uc como sudo. \033[1;31msudo Uc\033[0m"
+	else
+	echo -e "\033[1;37mVocê não está como usuário root, nem com seus direitos (sudo)\nPara tornar-se root execute \033[1;31msu\033[0m e digite sua senha root\033[0m"
+	fi
+fi

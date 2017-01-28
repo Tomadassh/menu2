@@ -1,0 +1,14 @@
+#!/bin/bash
+losquid=$(ls /etc |grep squid)
+if [ $(ls /etc |grep squid |wc -l) -eq 0 ]; then
+echo -e "\033[1;31mNão foi possível encontrar o diretório squid
+Talves ele não esteja instalado\033[0m"
+exit
+fi
+squid=$(cat /etc/$losquid/squid.conf)
+echo 'acl MegaTunelVPS dstdomain "/etc/payloads"' > /etc/$losquid/squid.conf
+echo "http_access allow MegaTunelVPS" >> /etc/$losquid/squid.conf
+echo "$squid" >> /etc/$losquid/squid.conf
+service squid restart 1> /dev/null 2> /dev/null
+service squid3 restart 1> /dev/null 2> /dev/null
+echo -e "\033[1;32mTudo terminado. Basta digitar Ah e adicionar novos domínios\033[0m"

@@ -1,0 +1,9 @@
+#!/bin/bash 
+clear
+	echo -e "\033[1;32mPreparando restauração de backup de usuários...\033[0;37m"
+sleep 3s
+clear
+read -p "Em qual diretorio está o arquivo de Backup: " arq 
+  rdy $arq
+exit 0
+fi

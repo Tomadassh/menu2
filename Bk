@@ -1,0 +1,36 @@
+#!/bin/bash
+clear
+read -p "Deseja continuar com o backup? [s/n]: " -e -i n resposta
+if [[ "$resposta" = 's' ]]; then
+echo -e "\033[1;37mFazendo Backup de usuários...\033[0m"
+for user in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]`
+do
+if [ -e /etc/tomada/senha/$user ]
+then
+pass=$(cat /etc/tomada/senha/$user)
+else
+echo -e "\033[1;31mNão foi possivel ter a senha do usuário\033[1;37m ($user)"
+read -p "Digite a senha manualmente ou tecle ENTER e deixá-lo sem senha: " pass
+fi
+
+if [ -e /etc/tomada/limite/$user ]
+then
+limite=$(cat /etc/tomada/limite/$user)
+
+data=$(chage -l $users |grep -i co |awk -F : '{print $2}')
+if [ $data = never ] 2> /dev/null
+
+then
+limite=$(cat /etc/tomada/limite/$user)
+echo "$user:$pass:$limite:$data" >> /etc/mtvps/backup
+echo -e "\033[1;37mUsuário $user:$pass:$limite:$data Backup [\033[1;31mOK\033[1;37m]\033[0m"
+else
+echo "$user:$pass" >> /etc/mtvps/backup
+echo -e "\033[1;37mUsuário $user:$pass Backup [\033[1;31mOK\033[1;37m]\033[0m"
+fi
+done
+echo " "
+echo -e "\033[1;31mBackup completo!\033[0m"
+echo " "
+echo -e "\033[1;37mAs informações sobre usuários ficam no arquivo \033[1;31m /etc/mtvps/backup \033[1;37m
+Guarde-os para uma futura restauração.(Copie-os via SFTP para seu telefone)\033[0m"

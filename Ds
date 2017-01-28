@@ -1,0 +1,28 @@
+#!/bin/bash
+clear
+echo "Desinstalando..."
+rm /bin/menu
+rm /bin/Ub
+rm /bin/rdy
+rm -r /etc/usuarios /etc/tempo
+rm /bin/Uc
+rm /bin/Ur
+rm /bin/Mt
+rm /bin/Dt
+rm /bin/limit
+rm /bin/Fb
+rm /bin/Rf
+rm /bin/Ah
+rm /bin/Ia
+rm /bin/Ru
+rm /bin/Re
+rm /bin/ajuda
+rm /bin/Sp
+rm /bin/Sd
+rm /bin/Li
+rm /bin/Bk
+rm /bin/extras
+rm /bin/DuT
+rm /bin/Ds
+clear
+echo "Desinstalação concluída."
