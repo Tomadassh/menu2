@@ -27,7 +27,7 @@ yum -y update
 yum -y install git
 git clone https://github.com/Tomadassh/menu2.git
 clear
-cd menu
+cd menu2
 rm -rf README.md
 rm -rf install
 for arqs in `ls`
@@ -43,7 +43,7 @@ apt-get install figlet -y
 apt-get install -y git
 git clone https://github.com/Tomadassh/menu2.git
 clear
-cd menu
+cd menu2
 rm -rf README.md
 rm -rf install
 for arqs in `ls`

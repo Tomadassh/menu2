@@ -1,28 +1,37 @@
 #!/bin/bash
 clear
-echo "Desinstalando..."
+echo -e "\033[1;31mDesinstalando...\033[0m"
 rm /bin/menu
+echo -e "\033[1;31mRemovendo menu de opções...\033[0m"
 rm /bin/Ub
+sleep 2s
 rm /bin/rdy
 rm -r /etc/usuarios /etc/tempo
 rm /bin/Uc
 rm /bin/Ur
 rm /bin/Mt
 rm /bin/Dt
+echo "Dt..."
+sleep 1s
 rm /bin/limit
 rm /bin/Fb
 rm /bin/Rf
 rm /bin/Ah
 rm /bin/Ia
 rm /bin/Ru
+echo "Ru..."
+sleep 1s
 rm /bin/Re
 rm /bin/ajuda
 rm /bin/Sp
 rm /bin/Sd
 rm /bin/Li
+echo "Li..."
+sleep 1s
 rm /bin/Bk
 rm /bin/extras
+rm /bin/bloquearip
 rm /bin/DuT
 rm /bin/Ds
 clear
-echo "Desinstalação concluída."
+echo -e "\033[1;31mDesinstalação concluída.\033[0m"

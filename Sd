@@ -12,7 +12,7 @@ exit 0
 fi
 if [ ! /proc/meminfo ]
 then
-echo "Error Getting System Information."
+echo -e "\033[1;31mError Getting System Information.\033[0m"
 exit 0
 fi
 
@@ -26,26 +26,26 @@ then
 
 echo "System: $system"
 else
-echo "System: Not Available"
+echo -e "\033[1;31mSystem: Not Available\033[0m"
 fi
 if [ "$based" ]
 then
 echo "Its a $based-like"
 else
-echo "Based system not Available"
+echo "\033[1;31mBased system not Available\033[0m"
 fi
 if [ "$processor" ]
 then
 echo "Processor: $processor x$cpus"
 else
-echo "Processor: Not Available"
+echo "\033[1;31mProcessor: Not Available\033[0m"
 fi
 clock=$(lscpu | grep "CPU MHz" | awk '{print $3}')
 if [ "$clock" ]
 then
 echo "Clock: $clock MHz"
 else
-echo "Clock: Not Available"
+echo "\033[1;31mClock: Not Available\033[0m"
 fi
 echo "$(ps aux  | awk 'BEGIN { sum = 0 }  { sum += sprintf("%f",$3) }; END { printf "CPU Usage: " "%.2f" "%%", sum}')"
 totalram=$(free | grep Mem | awk '{print $2}')
