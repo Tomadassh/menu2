@@ -53,4 +53,4 @@ echo "$2" > /etc/tomada/limite/$1
 
 echo "*/1 * * * * root bash /etc/tempo/$1.sh" >> /etc/crontab
 echo "#" >> /etc/crontab
-echo -e "\033[1;31m  Pronto!\033[0m"
+echo -e "\033[1;31mPronto!\033[0m"

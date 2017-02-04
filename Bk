@@ -13,13 +13,17 @@ echo -e "\033[1;31mNão foi possivel ter a senha do usuário\033[1;37m ($user)"
 read -p "Digite a senha manualmente ou tecle ENTER e deixá-lo sem senha: " pass
 fi
 
+data=$(chage -l $users |grep -i co |awk -F : '{print $2}')
+if [ $data = never ] 2> /dev/null
+then
+echo "$data"
+else
+echo "??"
+fi
+
 if [ -e /etc/tomada/limite/$user ]
 then
 limite=$(cat /etc/tomada/limite/$user)
-
-data=$(chage -l $users |grep -i co |awk -F : '{print $2}')
-if [ $data = never ] 2> /dev/null
-
 then
 limite=$(cat /etc/tomada/limite/$user)
 echo "$user:$pass:$limite:$data" >> /etc/mtvps/backup

@@ -16,7 +16,7 @@ if cat /etc/passwd |grep $name: > /dev/null
  echo " "
  else
  clear
- echo "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
+ echo -e "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
  exit
 Ub
  fi
@@ -32,7 +32,7 @@ if cat /etc/passwd |grep $name: > /dev/null
  echo " "
  else
  clear
- echo "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
+ echo -e "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
  exit
 Ub
  fi
@@ -50,7 +50,7 @@ if cat /etc/passwd |grep $name: > /dev/null
  echo " "
  else
  clear
- echo "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
+ echo -e "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
  exit
 Ub
  fi
@@ -67,7 +67,7 @@ if cat /etc/passwd |grep $name: > /dev/null
  echo " "
  else
  clear
- echo "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
+ echo -e "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
  exit
 Ub
  fi
@@ -84,11 +84,11 @@ if cat /etc/passwd |grep $namer: > /dev/null
  echo " "
  else
  clear
- echo "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
+ echo -e "\033[1;37mUsuário \033[1;31m$name\033[0m não existe\033[0m"
  exit
 Ub
  fi
- echo "\033[1;37mDigite os dados para a nova data de expiração\033[0m"
+ echo -e "\033[1;37mDigite os dados para a nova data de expiração\033[0m"
  read -p "Dia: " dia
  read -p "Mês(em numeral 1-12): " mes
  read -p "Ano: " ano
